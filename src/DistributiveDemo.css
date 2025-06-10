@@ -34,11 +34,11 @@
   gap: 20px;
 }
 
-.numpad-container {
+.input-container {
   text-align: center;
 }
 
-.numpad-label {
+.input-label {
   display: block;
   font-weight: bold;
   margin-bottom: 10px;
@@ -46,48 +46,38 @@
   font-size: 18px;
 }
 
-.numpad-input {
-  width: 120px;
-  height: 50px;
+.device-input {
+  width: 80px;
+  height: 60px;
   text-align: center;
-  font-size: 24px;
-  border: 3px solid #667eea;
-  border-radius: 10px;
-  margin-bottom: 15px;
-  background: #f8f9ff;
-  color: #333;
-  font-weight: bold;
-}
-
-.numpad {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  width: 180px;
-}
-
-.numpad-btn {
-  width: 50px;
-  height: 50px;
-  border: none;
-  border-radius: 10px;
   font-size: 18px;
   font-weight: bold;
-  cursor: pointer;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 20px;
   color: white;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  outline: none;
 }
 
-.numpad-btn:hover {
-  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+.device-input:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
-.numpad-btn:active {
-  transform: scale(0.95);
+.device-input:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  outline: 2px solid rgba(255,255,255,0.3);
+}
+
+.multiplier-input {
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+}
+
+.split-part-input {
+  background: linear-gradient(135deg, #ff8a50 0%, #ffb347 100%);
 }
 
 /* Visualization styles */
@@ -321,6 +311,16 @@
     margin-bottom: 20px;
   }
   
+  .device-input {
+    width: 100px;
+    height: 40px;
+    font-size: 16px;
+  }
+  
+  .input-label {
+    font-size: 16px;
+  }
+  
   .step {
     flex-direction: column;
     text-align: center;
@@ -420,24 +420,14 @@
     margin-bottom: 15px;
   }
   
-  .numpad {
-    width: 135px;
-  }
-  
-  .numpad-btn {
-    width: 35px;
+  .device-input {
+    width: 80px;
     height: 35px;
     font-size: 14px;
   }
   
-  .numpad-input {
-    width: 90px;
-    height: 40px;
-    font-size: 18px;
-  }
-  
-  .numpad-label {
-    font-size: 16px;
+  .input-label {
+    font-size: 14px;
   }
   
   .split-slider {

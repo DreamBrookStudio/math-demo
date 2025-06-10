@@ -54,56 +54,23 @@ const DistributiveDemo = () => {
     setSplitSlider(snappedSliderValue);
   };
 
+  const handleNumberChange = (value) => {
+    const numValue = Math.max(0, Math.min(999, parseInt(value) || 0));
+    setNumber(numValue);
+    setSplitSlider(Math.min(splitSlider, numValue));
+  };
+
+  const handleMultiplierChange = (value) => {
+    const numValue = Math.max(0, Math.min(999, parseInt(value) || 0));
+    setMultiplier(numValue);
+  };
+
   // Calculate parts
   const partA = Math.max(0, number - splitSlider);
   const partB = Math.max(0, splitSlider);
   const resultA = multiplier * partA;
   const resultB = multiplier * partB;
   const finalResult = resultA + resultB;
-
-  // Numpad component
-  const Numpad = ({ value, onChange, label }) => {
-    const handleClick = (action, num) => {
-      if (num !== undefined) {
-        if (value === 0 || value === '') {
-          onChange(parseInt(num));
-        } else if (value.toString().length < 3) {
-          onChange(parseInt(value.toString() + num));
-        }
-      } else if (action === 'clear') {
-        onChange(0);
-      } else if (action === 'backspace') {
-        const newValue = value.toString().slice(0, -1);
-        onChange(newValue === '' ? 0 : parseInt(newValue));
-      }
-    };
-
-    return (
-      <div className="numpad-container">
-        <label className="numpad-label">{label}</label>
-        <input 
-          type="text" 
-          value={value} 
-          readOnly 
-          className="numpad-input"
-        />
-        <div className="numpad">
-          {[7,8,9,4,5,6,1,2,3].map(num => (
-            <button 
-              key={num}
-              onClick={() => handleClick(null, num)}
-              className="numpad-btn"
-            >
-              {num}
-            </button>
-          ))}
-          <button onClick={() => handleClick('clear')} className="numpad-btn">C</button>
-          <button onClick={() => handleClick(null, 0)} className="numpad-btn">0</button>
-          <button onClick={() => handleClick('backspace')} className="numpad-btn">⌫</button>
-        </div>
-      </div>
-    );
-  };
 
   return (
     <div className="app-container">
@@ -112,19 +79,26 @@ const DistributiveDemo = () => {
         
         {/* Input Section */}
         <div className="input-section">
-          <Numpad 
-            value={number}
-            onChange={(val) => {
-              setNumber(val);
-              setSplitSlider(Math.min(splitSlider, val));
-            }}
-            label="Number:"
-          />
-          <Numpad 
-            value={multiplier}
-            onChange={setMultiplier}
-            label="Multiplier:"
-          />
+          <div className="input-container">
+            <label className="input-label">Number:</label>
+            <input 
+              type="text"
+              inputMode="numeric"
+              value={number}
+              onChange={(e) => handleNumberChange(e.target.value)}
+              className="device-input split-part-input"
+            />
+          </div>
+          <div className="input-container">
+            <label className="input-label">Multiplier:</label>
+            <input 
+              type="text"
+              inputMode="numeric"
+              value={multiplier}
+              onChange={(e) => handleMultiplierChange(e.target.value)}
+              className="device-input multiplier-input"
+            />
+          </div>
         </div>
 
         {/* Visualization */}
